@@ -4,7 +4,7 @@ title = "Contact"
 
 # Contact Us
 
-<form action="https://formspree.io/f/mbjqeyww" method="POST">
+<form action="https://formspree.io/f/xeqvyzrl" method="POST">
   <div class="field">
     <label class="label">Your email:</label>
     <div class="control">

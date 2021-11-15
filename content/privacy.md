@@ -12,4 +12,4 @@ Thoughtwriter does not collect any personal information. Any thoughts you write 
 
 ## Contact
 
-If you have any questions or concerns, please feel free to [contact us](mailto:thoughtwriter@simonguillot.com).
+If you have any questions or concerns, please feel free to [contact us](@/contact.md).
