@@ -17,7 +17,7 @@ title = "Home"
           </p>
         </div>
         <div class="column is-vcentered">
-          <img src="screenshot-1.png" style="max-height: 70vh">
+          <img src="screenshot-1.png" style="min-height: 500px; max-height: 70vh">
         </div>
       </div>
     </div>
