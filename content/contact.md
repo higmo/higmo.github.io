@@ -1,8 +1,7 @@
 +++
 title = "Contact"
+description = "Contact Us"
 +++
-
-# Contact Us
 
 <form action="https://formspree.io/f/xeqvyzrl" method="POST">
   <div class="field">
