@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  {% block head %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}{{ config.title }}{% endblock title %}</title>
@@ -12,13 +13,14 @@
           font-size: 0.8em
       }
   </style>
+  {% endblock head %}
 </head>
 
 {% set section = get_section(path="_index.md") %}
 
 <body>
   {% block navbar %}
-    {{ macros::navbar() }}
+  {{ macros::navbar() }}
   {% endblock navbar %}
 
   {% block content %}
