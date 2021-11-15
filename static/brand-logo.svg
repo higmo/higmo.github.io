@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="142px" height="260px" viewBox="0 0 142 260" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>brand-logo</title>
+    <g id="brand-logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(18.500000, 9.500000)" stroke="#3298DC" stroke-width="3">
+            <g>
+                <g id="Right-Branch" transform="translate(72.000000, 37.000000)">
+                    <polyline id="Line" stroke-linecap="square" points="1.00793939e-14 185 1.00793939e-14 78 16.5 58.5628282"></polyline>
+                    <polyline id="Line" stroke-linecap="square" points="6.69228128e-14 142.437172 6.69228128e-14 35.4371718 16.5 16"></polyline>
+                    <circle id="Oval" cx="23.5" cy="51.5" r="9.5"></circle>
+                    <circle id="Oval" cx="23.5" cy="9.5" r="9.5"></circle>
+                </g>
+                <g id="Left-Branch" transform="translate(16.500000, 129.500000) scale(-1, 1) translate(-16.500000, -129.500000) translate(0.000000, 37.000000)">
+                    <polyline id="Line" stroke-linecap="square" points="1.00793939e-14 185 1.00793939e-14 78 16.5 58.5628282"></polyline>
+                    <polyline id="Line" stroke-linecap="square" points="6.69228128e-14 142.437172 6.69228128e-14 35.4371718 16.5 16"></polyline>
+                    <circle id="Oval" cx="23.5" cy="51.5" r="9.5"></circle>
+                    <circle id="Oval" cx="23.5" cy="9.5" r="9.5"></circle>
+                </g>
+                <path d="M1.56663806,202.468267 C1.67509701,192.421861 1.2547701,182.347536 1.89201491,172.329048 C2.43563767,163.782446 13.2579452,167.908401 14.3363888,160.011968 C15.8898581,148.637368 15.1318322,136.982834 15.5295539,125.468267" id="Path" transform="translate(8.529554, 163.968267) scale(-1, 1) translate(-8.529554, -163.968267) "></path>
+                <path d="M88.5666381,202.468267 C88.675097,192.421861 88.2547701,182.347536 88.8920149,172.329048 C89.4356377,163.782446 100.257945,167.908401 101.336389,160.011968 C102.889858,148.637368 102.131832,136.982834 102.529554,125.468267" id="Path"></path>
+                <g id="Trunk" transform="translate(43.000000, 0.000000)">
+                    <line x1="9.5" y1="19" x2="9.5" y2="241.5" id="Line" stroke-linecap="square"></line>
+                    <circle id="Oval" cx="9.5" cy="9.5" r="9.5"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
