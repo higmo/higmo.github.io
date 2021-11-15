@@ -1,20 +1,12 @@
+{% import "_macros.html" as macros %}
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}{{ config.title }}{% endblock title %}</title>
-  <link rel="stylesheet" href="{{ get_url(path='bulma.min.css') }}">
-  <script async type="text/javascript">
-    window.addEventListener("DOMContentLoaded", (event) => {
-      var burger = document.querySelector('.navbar-burger');
-      var menu = document.querySelector('#' + burger.dataset.target);
-      burger.addEventListener('click', function () {
-          burger.classList.toggle('is-active');
-          menu.classList.toggle('is-active');
-      });
-    })
-  </script>
+  <link rel="stylesheet" href="{{ get_url(path='style.css') }}">
   <style>
       .copyright {
           font-size: 0.8em
@@ -22,38 +14,11 @@
   </style>
 </head>
 
+{% set section = get_section(path="_index.md") %}
+
 <body>
   {% block navbar %}
-  <nav class="navbar">
-    <div class="container">
-      <div class="navbar-brand">
-        {% set section = get_section(path="_index.md") %}
-        <a class="navbar-item" href="{{ section.permalink }}">
-          <img src="{{ get_url(path='brand-menu-banner.svg') }}">
-        </a>
-        <span class="navbar-burger" data-target="navbarMenuHeroA">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-      </div>
-      <div class="navbar-menu">
-        <div class="navbar-end">
-          <a class="navbar-item" href="{{ section.permalink }}">{{ section.title }}</a>
-
-          {% for page in section.pages %}
-            <a class="navbar-item" href="{{ page.permalink }}">{{ page.title }}</a>
-          {% endfor %}
-
-          {% if config.extra.extra_menu %}
-              {% for menu in config.extra.extra_menu %}
-              <a class="navbar-item" href="{{ menu.link }}">{{ menu.title }}</a>
-              {% endfor %}
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  </nav>
+    {{ macros::navbar() }}
   {% endblock navbar %}
 
   {% block content %}
@@ -63,7 +28,7 @@
     <div class="container is-max-desktop content">
       <div class="columns">
         <div class="column">
-          <h4>Company</h4>
+          <h4>{{ config.title }}</h4>
           <p><a href="{{ section.permalink }}">{{ section.title }}</a></p>
 
           {% for page in section.pages %}
@@ -71,7 +36,7 @@
           {% endfor %}
         </div>
         <div class="column">
-          <h4>Products</h4>
+          <h4>Worth seeing</h4>
           <p><a href="https://simonguillot.com/thoughtwriter">Thoughtwriter</a></p>
           <p><a href="#">HIIT Companion</a></p>
         </div>
