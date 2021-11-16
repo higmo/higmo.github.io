@@ -3,7 +3,7 @@ title = "Contact"
 description = "Contact me"
 +++
 
-<form action="https://formspree.io/f/mbjqeyww method="POST">
+<form action="https://formspree.io/f/mbjqeyww" method="POST">
   <div class="field">
     <label class="label">Your email:</label>
     <div class="control">
