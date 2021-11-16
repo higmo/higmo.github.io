@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thoughtwriter</title>
+  <link rel="stylesheet" href="https://simonguillot.com/thoughtwriter/style.css">
+  <style>
+      .copyright {
+          font-size: 0.8em
+      }
+  </style>
+  
+</head>
+
+
+
+<body>
+  
+  
+
+
+<script async type="text/javascript">
+    window.addEventListener("DOMContentLoaded", (event) => {
+        var burger = document.querySelector('.navbar-burger');
+        var menu = document.querySelector('#' + burger.dataset.target);
+        burger.addEventListener('click', function () {
+            burger.classList.toggle('is-active');
+            menu.classList.toggle('is-active');
+        });
+    })
+</script>
+
+<nav class="navbar is-dark">
+  <div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="https:&#x2F;&#x2F;simonguillot.com&#x2F;thoughtwriter&#x2F;">
+        <img src="https://simonguillot.com/thoughtwriter/navbar-brand.png" height="50">
+        </a>
+        <span class="navbar-burger" data-target="navbarMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+        </span>
+    </div>
+    <div class="navbar-menu" id="navbarMenu">
+        <div class="navbar-end">
+        <a class="navbar-item" href="https:&#x2F;&#x2F;simonguillot.com&#x2F;thoughtwriter&#x2F;">Home</a>
+    
+        
+            <a class="navbar-item" href="https:&#x2F;&#x2F;simonguillot.com&#x2F;thoughtwriter&#x2F;contact&#x2F;">Contact</a>
+        
+            <a class="navbar-item" href="https:&#x2F;&#x2F;simonguillot.com&#x2F;thoughtwriter&#x2F;privacy&#x2F;">Privacy</a>
+        
+    
+        
+        </div>
+    </div>
+  </div>
+</nav>
+
+  
+
+  
+  <section class="section hero is-dark is-fullheight">
+    <div class="container has-text-centered ">
+      <div class="columns is-desktop is-vcentered">
+        <div class="column">
+          <p class="title">
+            Save memories, track your mood
+          </p>
+          <p class="subtitle">
+              A simple, elegant journaling app that helps you track your mood. Its AI lives on your device so there's no need to steal your data.
+          </p>
+          <p>
+            <a href="#"><img src="app-store-badge-black.svg" /></a>
+          </p>
+        </div>
+        <div class="column is-vcentered">
+          <img src="screenshot-1.png" style="min-height: 500px; max-height: 70vh">
+        </div>
+      </div>
+    </div>
+</section>
+
+
+  <footer class="footer">
+    <div class="container is-max-desktop content">
+      <div class="columns">
+        <div class="column">
+          <h4>Thoughtwriter</h4>
+          <p><a href="https:&#x2F;&#x2F;simonguillot.com&#x2F;thoughtwriter&#x2F;">Home</a></p>
+
+          
+            <p><a href="https:&#x2F;&#x2F;simonguillot.com&#x2F;thoughtwriter&#x2F;contact&#x2F;">Contact</a></p>
+          
+            <p><a href="https:&#x2F;&#x2F;simonguillot.com&#x2F;thoughtwriter&#x2F;privacy&#x2F;">Privacy</a></p>
+          
+        </div>
+        <div class="column">
+          <h4>Worth seeing</h4>
+          <p><a href="https://simonguillot.com/thoughtwriter">Thoughtwriter</a></p>
+          <p><a href="#">HIIT Companion</a></p>
+        </div>
+      </div>
+      <hr/>
+    </div>
+    <div class="content has-text-centered">
+      <p class="copyright">
+        &copy; 2021 Simon Guillot
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

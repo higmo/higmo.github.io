@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Simon Guillot | Real time interpolation of the magnetic field </title>
+  <link rel="stylesheet" href="https://simonguillot.com/style.css">
+  <style>
+      .copyright {
+          font-size: 0.8em
+      }
+  </style>
+  
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+    });
+</script>
+  
+
+
+</head>
+
+<body>
+  
+  
+
+
+<script async type="text/javascript">
+    window.addEventListener("DOMContentLoaded", (event) => {
+        var burger = document.querySelector('.navbar-burger');
+        var menu = document.querySelector('#' + burger.dataset.target);
+        burger.addEventListener('click', function () {
+            burger.classList.toggle('is-active');
+            menu.classList.toggle('is-active');
+        });
+    })
+</script>
+
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-brand">
+        
+        <span class="navbar-burger" data-target="navbarMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+        </span>
+    </div>
+    <div class="navbar-menu" id="navbarMenu">
+        <div class="navbar-end">
+        <a class="navbar-item" href="https:&#x2F;&#x2F;simonguillot.com&#x2F;">Home</a>
+    
+        
+            <a class="navbar-item" href="https:&#x2F;&#x2F;simonguillot.com&#x2F;cv&#x2F;">CV</a>
+        
+            <a class="navbar-item" href="https:&#x2F;&#x2F;simonguillot.com&#x2F;contact&#x2F;">Contact</a>
+        
+
+        
+        
+        <a class="navbar-item" href="https:&#x2F;&#x2F;simonguillot.com&#x2F;articles&#x2F;">Articles</a>
+        
+    
+        
+        </div>
+    </div>
+  </div>
+</nav>
+
+  
+
+  
+
+<section class="hero is-small">
+    <div class="hero-body">
+      
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    #profile {
+        font-family: "Raleway", sans-serif;
+        animation: fade-in-up .5s;
+        animation-delay: .2s;
+        animation-fill-mode: both;
+    }
+
+    #profile .title {
+        margin-top: 0.5rem;
+    }
+
+    #profile .subtitle {
+        font-weight: 100;
+        font-size: large;
+    }
+
+    #profile, #profile a {
+        color: #aaa;
+    }
+
+    #profile p.accounts {
+        font-size: 1.5em;
+    }
+
+    #profile p.accounts a {
+        margin: 0 0.3em;
+    }
+</style>
+
+<div class="has-text-centered content is-family-secondary" id="profile">
+    <a href="https:&#x2F;&#x2F;simonguillot.com">
+        <img src="https://simonguillot.com/avatar.png" width="128px">
+        <h1 class="title">Simon Guillot</h1>
+        <h2 class="subtitle">Freelance Software Engineer | Machine Learning &amp; iOS</h2>
+    </a>
+    <p class="accounts">
+        
+            <a href="https:&#x2F;&#x2F;github.com&#x2F;notsimon">
+            <svg class="icon"><use xlink:href="https://simonguillot.com/fa-brands.svg#github"/>Github</svg>
+            </a>
+        
+            <a href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;simon-guillot-302567184&#x2F;">
+            <svg class="icon"><use xlink:href="https://simonguillot.com/fa-brands.svg#linkedin"/>Linkedin</svg>
+            </a>
+        
+    </p>
+</div>
+
+    </div>
+</section>
+
+
+<style>
+  .page-content img {
+    margin: auto;
+    display: block;
+  }
+</style>
+
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h1 class="title is-2 has-text-centered">Real time interpolation of the magnetic field</h1>
+    <div class="page-content">
+      <p>This report introduces one of my attempts at modelling the magnetic field of a 
+room using a continuous representation. The first goal of this work is to assist 
+the tracking of the orientation of a device by taking into account the multiple 
+distortions of the field observed indoor: this is a step toward a positioning 
+algorithm that takes advantage of these anomalies.</p>
+<h2 id="maxwell-s-equations-and-the-magnetic-scalar-potential">Maxwell's equations and the magnetic scalar potential</h2>
+<p>In order to be plausible, an approximation of the magnetic field should obey 
+some properties well known by physicists. All electromagnetic phenomena are 
+governed by <a href="https://en.wikipedia.org/wiki/Maxwell%27s_equations#Formulation_in_SI_units_convention">Maxwell's 
+equations</a>, 
+two of them involve the magnetic field:</p>
+<p>$$
+\nabla \cdot B = 0
+$$</p>
+<p>$$
+\nabla \times B = \mu_0 \left(J + \epsilon_0 \frac{\partial E}{\partial t}\right)
+$$</p>
+<p>where $B \in \mathbb{R}^3 \mapsto \mathbb{R}^3$ is the magnetic field, $\mu_0$ 
+and $\epsilon_0$ are respectively the permeability and permittivity of vacuum, 
+$J$ is the current density and $E$ the electric field. </p>
+<p>The first of these two laws states that the magnetic field is divergence free, 
+in other words, <em>magnetic monopoles do not exist</em>. We are assuming that there is 
+no free current in the air and no time-dependent effects due to moving electric 
+charges, thus the Ampère's circuital law reduces to:</p>
+<p>$$
+\nabla \times B = 0
+$$</p>
+<p>In these conditions, the magnetic field is then said to be <em>irrotational</em>. An 
+irrotational vector field can be fully described as the gradient of a scalar 
+field, called a scalar potential:</p>
+<p>$$
+B = - \nabla \psi
+$$</p>
+<p>Thus, by modeling $\psi$ in place of $B$ directly, we are implicitly modeling a 
+vector field that follows the second law.<sup class="footnote-reference"><a href="#wahlstrom">1</a></sup><sup class="footnote-reference"><a href="#solin">2</a></sup> The first law will 
+be added as a regularization in the optimization procedure.</p>
+<div class="footnote-definition" id="wahlstrom"><sup class="footnote-definition-label">1</sup>
+<p>Niklas Wahlström et al., &quot;Modeling magnetic fields using Gaussian 
+Processes&quot;, <em>2013 International Conference on Acoustics, Speech and Signal 
+Processing (ICASSP)</em></p>
+</div>
+<div class="footnote-definition" id="solin"><sup class="footnote-definition-label">2</sup>
+<p>Arno Solin et al., &quot;Modeling and interpolation of the ambient magnetic 
+field by Gaussian processes&quot;, <em>arXiv:1509.04634</em></p>
+</div>
+<h2 id="differentiable-interpolation">Differentiable interpolation</h2>
+<p>The map is represented by a set of anchor points $M = {(c_k, w_k) | k \in [1, 
+K]}$, where $c_k$ is the position of the anchor in $\mathbb{R}^2$ and $w_k$ its 
+associated value – a scalar potential in this case.</p>
+<p>In order to have a model differentiable with respect to the position and the 
+elements of the map $M$, the <a href="https://en.wikipedia.org/wiki/Multivariate_interpolation">interpolation function</a> 
+is defined to be in the form:</p>
+<p>$$
+\psi(x) = \sum_{k=1}^K w_k \phi(x, c_k)
+$$</p>
+<p>where $x \in \mathbb{R}^2$ is a point in space, $w_k$ the value of the map at 
+the anchor $k$ located in position $c_k$, and $\phi \in (\mathbb{R}^2, 
+\mathbb{R}^2) \mapsto \mathbb{R}$ is a differentiable radial basis function: it 
+gives a weight to the anchors depending on their distance to the point $x$.  In 
+essence, this approach is similar to the attention mechanism in deep 
+learning.<sup class="footnote-reference"><a href="#attention">3</a></sup></p>
+<p>With this definition of the scalar potential function $\psi$, the estimated 
+magnetic field $B$ is:</p>
+<p>$$
+B(x) = \nabla_x \psi(x) = \sum_{k=1}^K w_k \nabla_x \phi(x, c_k)
+$$</p>
+<span style="font-size: smaller">
+We dropped the negative sign to simplify the equations even though this not 
+standard among mathematicians and physicists, however the true value of the 
+potential is of little interest to our application.
+</span>
+<div class="footnote-definition" id="attention"><sup class="footnote-definition-label">3</sup>
+<p>Olah &amp; Carter, &quot;Attention and Augmented Recurrent Neural 
+Networks&quot;, <em>Distill, 2016</em>. http://distill.pub/2016/augmented-rnns/</p>
+</div>
+<h3 id="radial-basis-functions">Radial basis functions</h3>
+<p>A radial basis function satisfies the property $\phi(x) = \phi(||x||)$: its 
+value depends only on the distance from the origin – or another point called the 
+center. Some commonly used RBF are shown below.</p>
+<p><img src="rbf.svg" style="max-width: 350px"></img></p>
+<h2 id="learning-the-map-parameters">Learning the map parameters</h2>
+<p>Given a set of known points $S^\star = { (x_i^\star, y_i^\star) | i \in [1..N] 
+}$ where $x_i^\star \in \mathbb{R}^2$ is a position in space and $y_i^\star \in 
+\mathbb{R}^2$ the observed value of the $B$ field at this position, we are 
+looking for a differentiable function $\psi \in \mathbb{R}^2 \mapsto \mathbb{R}$ 
+that minimizes the loss</p>
+<p>$$
+L_\psi = \sum_{i=1}^N \delta(\nabla \psi(x_i^\star), y_i^\star)
+$$</p>
+<p>where $\delta \in (\mathbb{R}^2, \mathbb{R}^2) \mapsto \mathbb{R}$ is a 
+measurement of the error between the output of the model and the expected value.</p>
+<p><img src="magnetic-field-data.svg" style="max-width: 400px"></img></p>
+<p>A test case recorded using Optitrack cameras for pose estimation and a 
+calibrated magnetometer.  At the center of the scene lies a Sonos wireless 
+speaker which induce a distortion of the magnetic field around 
+it.</p>
+<h3 id="stochastic-gradient-descent">Stochastic gradient descent</h3>
+<p>Considering the parameters as $\theta = (w_1, \cdots, w_K, c_1, \cdots, 
+c_K)^\top$. Minimizing the loss $\mathcal{L}_\psi$ using a stochastic gradient 
+descent (SGD) comes down to updating the parameters iteratively using</p>
+<p>$$
+\theta \leftarrow \theta - \epsilon \nabla_\theta \delta(\nabla_x \psi(x^\star), 
+y^\star)
+$$</p>
+<p>where $\epsilon$ is a constant controlling the learning rate and $(x^\star, 
+y^\star)$ is an element of $S^\star$ chosen at random. This is the simplest form 
+of SGD, in practice there is <a href="http://sebastianruder.com/optimizing-gradient-descent/">many 
+improvements</a> to make it 
+much more effective.</p>
+<h2 id="implementation-using-a-kalman-filter">Implementation using a Kalman filter</h2>
+<div style="font-size: smaller; font-style: italic">
+Updated on June 27, 2017.
+</div>
+<p>We chose $\phi$ to be the form of a Gaussian function such that</p>
+<p>$$
+\phi(x, c_k) = e^{-\frac{||x - c_k||^2}{2 \sigma^2}}
+$$</p>
+<p>where $\sigma$ is a hyperparameter related to the <a href="https://en.wikipedia.org/wiki/Full_width_at_half_maximum">full width at half 
+maximum</a> – it gives 
+the <em>spread</em> of the weighting. Its gradient w.r.t the position $x$ is</p>
+<p>$$
+\nabla_x \phi(x, c_k) = \frac{c_k - x}{\sigma^2}
+e^{-\frac{||x - c_k||^2}{2 \sigma^2}}
+$$</p>
+<p>Therefore, we have</p>
+<p>$$
+B(x) = \sum_{k=1}^K w_k \nabla_x \phi(x, c_k)
+= \sum_{k=1}^K w_k \frac{c_k - x}{\sigma^2} e^{-\frac{||x - c_k||^2}{2 \sigma^2}}
+$$</p>
+<p>By fixing the values of the $c_k$ – i.e. taking them as hyperparameters of the 
+model – we can now express $B(x)$ as a linear function of the parameters we are 
+trying to estimate (the weights $w_k$) such that:</p>
+<p>$$
+B = H \cdot w
+$$</p>
+<p>where $H$ is the $3 \times K$ matrix</p>
+<p>$$
+H =
+\begin{bmatrix}
+\nabla_x \phi(x, c_1) &amp; \cdots &amp; \nabla_x \phi(x, c_K)
+\end{bmatrix}
+$$</p>
+<p>and $w$ the column vector</p>
+<p>$$
+w =
+\begin{bmatrix}
+w_1 \
+\vdots \
+w_K
+\end{bmatrix}
+$$</p>
+<p>When defined as a linear optimization problem, the quest for the most likely 
+field potential fits in the (original) <a href="https://en.wikipedia.org/wiki/Kalman_filter">Kalman 
+filter</a> framework – which is, under 
+some conditions, a well suited algorithm for real time estimation of unknown 
+variables. In particular, we are making use of the <em>update</em> step of the 
+algorithm during which observations are used to correct the estimation of the 
+state of the system.</p>
+<p>An update iteration of the estimated state $w$ and its covariance $P$ given a 
+measurement $y$ goes as follow:</p>
+<ul>
+<li>
+<p>Compute the $H$ matrix for the current position $x$</p>
+</li>
+<li>
+<p>Compute the residual $z$ between the true and estimated measurements, its 
+covariance $S$ and the Kalman gain $K$ using</p>
+<p>$$
+\begin{aligned}
+z &amp;= y - H w \
+S &amp;= R + H P H^\top \
+K &amp;= P H^\top S^{-1} \
+\end{aligned}
+$$</p>
+</li>
+<li>
+<p>Update the state $w$ and its covariance $P$ with</p>
+</li>
+</ul>
+<p>$$
+\begin{aligned}
+w &amp;\leftarrow w + K z \
+P &amp;\leftarrow (I - K H) P
+\end{aligned}
+$$</p>
+<p>In our case, the measurement $y$ is the output of the magnetometer in 
+$\mathbb{R}^3$ (transformed to take into account the orientation of the device). 
+Thus, $S$ is in $\mathcal{M}^{3\times3}$ and its inverse is easy to compute.</p>
+<h3 id="initial-results">Initial results</h3>
+<p>In the following experiment, we choose the $c_k$ such that the points are spread 
+over a grid covering a least the area of interest with a resolution of 25cm. The 
+model observes 60 samples taken at random from a ground truth made of 380 
+samples. In other words, the train set is made of $N = 60$ samples.</p>
+<p><img src="kalman-map-test-1.svg" style="max-width: 400px" id="kalman-map-test"></img>
+Model output after one observation of each training 
+sample.</p>
+<script type = "text/javascript">
+  var images = [], x = 0;
+  images[0] = "kalman-map-test-1.svg";
+  images[1] = "kalman-map-test-2.svg";
+
+  setInterval(function() {
+    x = (x + 1) % images.length;
+    document.getElementById("kalman-map-test").src = images[x];
+  }, 2000);
+</script>
+<p>Although the training data do not contain much information on the anomaly at the 
+center of the scene, the model manages to estimate it quite accurately. Indeed, 
+in the figure below we see that the model converges rapidly to its optimum after 
+having seen only a few samples.</p>
+<p><img src="kalman-map-mse.svg" style="max-width: 400px" id="kalman-map-test"></img></p>
+<p>Model error evolution during 
+training.</p>
+<h2 id="future-work">Future work</h2>
+<h3 id="regularization-using-the-divergence">Regularization using the divergence</h3>
+<p>We used only one property of the magnetic field, the divergence-free property 
+could be introduced in the system as a regularizer such that:</p>
+<p>$$
+\nabla \cdot B(x) = \nabla \cdot \nabla \psi(x)
+= \sum_{k=1}^K w_k \nabla_x \cdot \nabla_x \phi(x, c_k)
+$$</p>
+<p>which can be rewritten using the scalar Laplacian:</p>
+<p>$$
+\nabla \cdot B(x) = \sum_{k=1}^K w_k \Delta_x \phi(x, c_k)
+$$</p>
+<p>In a Kalman filter framework, this would come down to making an observation of 
+the value of the divergence.</p>
+
+    </div>
+  </div>
+</section>
+
+
+  
+  <footer class="footer">
+    
+  
+  <div class="container is-max-desktop content">
+    <div class="columns">
+      <div class="column">
+        <h4>Quick links</h4>
+        <p><a href="https:&#x2F;&#x2F;simonguillot.com&#x2F;">Home</a></p>
+
+        
+          <p><a href="https:&#x2F;&#x2F;simonguillot.com&#x2F;cv&#x2F;">CV</a></p>
+        
+          <p><a href="https:&#x2F;&#x2F;simonguillot.com&#x2F;contact&#x2F;">Contact</a></p>
+        
+
+        
+        
+          <p><a href="https:&#x2F;&#x2F;simonguillot.com&#x2F;articles&#x2F;">Articles</a></p>
+        
+      </div>
+
+      <div class="column">
+        <h4>Products</h4>
+        
+          <p><a href="https:&#x2F;&#x2F;simonguillot.com&#x2F;thoughtwriter">Thoughtwriter</a></p>
+        
+      </div>
+    </div>
+    <hr/>
+  </div>
+
+
+    <div class="container content has-text-centered">
+      <p class="copyright">
+        © 2021 Simon Guillot
+      </p>
+    </div>
+  </footer>
+  
+</body>
+</html>

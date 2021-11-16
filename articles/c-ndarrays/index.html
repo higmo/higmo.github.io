@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Simon Guillot | N-dimensional arrays in C </title>
+  <link rel="stylesheet" href="https://simonguillot.com/style.css">
+  <style>
+      .copyright {
+          font-size: 0.8em
+      }
+  </style>
+  
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+    });
+</script>
+  
+
+
+</head>
+
+<body>
+  
+  
+
+
+<script async type="text/javascript">
+    window.addEventListener("DOMContentLoaded", (event) => {
+        var burger = document.querySelector('.navbar-burger');
+        var menu = document.querySelector('#' + burger.dataset.target);
+        burger.addEventListener('click', function () {
+            burger.classList.toggle('is-active');
+            menu.classList.toggle('is-active');
+        });
+    })
+</script>
+
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-brand">
+        
+        <span class="navbar-burger" data-target="navbarMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+        </span>
+    </div>
+    <div class="navbar-menu" id="navbarMenu">
+        <div class="navbar-end">
+        <a class="navbar-item" href="https:&#x2F;&#x2F;simonguillot.com&#x2F;">Home</a>
+    
+        
+            <a class="navbar-item" href="https:&#x2F;&#x2F;simonguillot.com&#x2F;cv&#x2F;">CV</a>
+        
+            <a class="navbar-item" href="https:&#x2F;&#x2F;simonguillot.com&#x2F;contact&#x2F;">Contact</a>
+        
+
+        
+        
+        <a class="navbar-item" href="https:&#x2F;&#x2F;simonguillot.com&#x2F;articles&#x2F;">Articles</a>
+        
+    
+        
+        </div>
+    </div>
+  </div>
+</nav>
+
+  
+
+  
+
+<section class="hero is-small">
+    <div class="hero-body">
+      
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    #profile {
+        font-family: "Raleway", sans-serif;
+        animation: fade-in-up .5s;
+        animation-delay: .2s;
+        animation-fill-mode: both;
+    }
+
+    #profile .title {
+        margin-top: 0.5rem;
+    }
+
+    #profile .subtitle {
+        font-weight: 100;
+        font-size: large;
+    }
+
+    #profile, #profile a {
+        color: #aaa;
+    }
+
+    #profile p.accounts {
+        font-size: 1.5em;
+    }
+
+    #profile p.accounts a {
+        margin: 0 0.3em;
+    }
+</style>
+
+<div class="has-text-centered content is-family-secondary" id="profile">
+    <a href="https:&#x2F;&#x2F;simonguillot.com">
+        <img src="https://simonguillot.com/avatar.png" width="128px">
+        <h1 class="title">Simon Guillot</h1>
+        <h2 class="subtitle">Freelance Software Engineer | Machine Learning &amp; iOS</h2>
+    </a>
+    <p class="accounts">
+        
+            <a href="https:&#x2F;&#x2F;github.com&#x2F;notsimon">
+            <svg class="icon"><use xlink:href="https://simonguillot.com/fa-brands.svg#github"/>Github</svg>
+            </a>
+        
+            <a href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;simon-guillot-302567184&#x2F;">
+            <svg class="icon"><use xlink:href="https://simonguillot.com/fa-brands.svg#linkedin"/>Linkedin</svg>
+            </a>
+        
+    </p>
+</div>
+
+    </div>
+</section>
+
+
+<style>
+  .page-content img {
+    margin: auto;
+    display: block;
+  }
+</style>
+
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h1 class="title is-2 has-text-centered"></h1>
+    <div class="page-content">
+      <p>The grammar of C is messy and some constructions can be counter-intuitive for 
+beginners: this is the case of multidimensional arrays (non-programmers would 
+call them tensors).</p>
+<h2 id="introduction">Introduction</h2>
+<p>Someone new to low-level programming would be tempted to declare arrays with 
+multiple dimensions in the following way:</p>
+<pre data-lang="c" style="background-color:#2b303b;color:#c0c5ce;" class="language-c "><code class="language-c" data-lang="c"><span style="color:#b48ead;">float</span><span>*** </span><span style="color:#8fa1b3;">make_3d_float_array</span><span>(size_t </span><span style="color:#bf616a;">x</span><span>, size_t </span><span style="color:#bf616a;">y</span><span>, size_t </span><span style="color:#bf616a;">z</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">float</span><span>*** A = </span><span style="color:#96b5b4;">malloc</span><span>(x*sizeof(</span><span style="color:#b48ead;">float</span><span>**));
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">for </span><span>(...) {
+</span><span>        A[i] = </span><span style="color:#96b5b4;">malloc</span><span>(... </span><span style="color:#65737e;">// I think you know the rest...
+</span></code></pre>
+<p>Even though the syntax for accessing cells is the same as for static arrays, 
+that's not the best thing to do: unless you're planning to replace entire rows 
+or planes more often than you do random accesses, this is inefficient. We need 
+contiguous arrays without having to explicitly compute the indexes.</p>
+<p>While learning C and experimenting with metaprogramming, I wrote <a href="https://simonguillot.com/articles/c-ndarrays/ndarray.h">a few 
+helpers</a> using the preprocessor for dynamic 
+multidimensional arrays. If you take a look at it without much knowledge of the 
+C preprocessor, you'll probably see it as mostly voodoo. Fortunately C99 comes 
+with syntactic sugar that makes this unnecessary. <strong>Read on !</strong></p>
+<h2 id="static-arrays">Static arrays</h2>
+<p>As a reminder, static arrays means we are putting the size of the array in its 
+type. A static 2D arrays of integers can be declared and used as such:</p>
+<pre data-lang="c" style="background-color:#2b303b;color:#c0c5ce;" class="language-c "><code class="language-c" data-lang="c"><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">foo</span><span>(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span>[</span><span style="color:#d08770;">4</span><span>][</span><span style="color:#d08770;">2</span><span>]) {
+</span><span>    </span><span style="color:#65737e;">// Do something with x.
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">int</span><span> x[</span><span style="color:#d08770;">4</span><span>][</span><span style="color:#d08770;">2</span><span>];
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">int</span><span> i = </span><span style="color:#d08770;">0</span><span>; i &lt; sizeof(x) / sizeof(x[</span><span style="color:#d08770;">0</span><span>]); i++)
+</span><span>        </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">int</span><span> j = </span><span style="color:#d08770;">0</span><span>; j &lt; sizeof(x) / sizeof(x[</span><span style="color:#d08770;">0</span><span>][</span><span style="color:#d08770;">0</span><span>]); j++)
+</span><span>            x[i][j] = </span><span style="color:#96b5b4;">rand</span><span>();
+</span><span>
+</span><span>    </span><span style="color:#bf616a;">foo</span><span>(x);
+</span><span>    </span><span style="color:#65737e;">// Don&#39;t be fooled by the syntax of foo&#39;s argument,
+</span><span>    </span><span style="color:#65737e;">// there&#39;s no copy of x involved!
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}
+</span></code></pre>
+<p>Although the syntax may be deceiving, <strong>the array is not copied when calling the 
+function</strong>. And there's no way to ask for an implicit copy.</p>
+<p>What about dynamic arrays, for which the size may not be known at compile time ?</p>
+<h2 id="proper-dynamic-arrays">Proper dynamic arrays</h2>
+<p>In C99, variable length arrays can be declared and allocated as follow:</p>
+<pre data-lang="c" style="background-color:#2b303b;color:#c0c5ce;" class="language-c "><code class="language-c" data-lang="c"><span style="color:#b48ead;">int</span><span> m = </span><span style="color:#96b5b4;">rand</span><span>() % </span><span style="color:#d08770;">10 </span><span>+ </span><span style="color:#d08770;">1</span><span>;
+</span><span style="color:#b48ead;">int</span><span> n = </span><span style="color:#96b5b4;">rand</span><span>() % </span><span style="color:#d08770;">10 </span><span>+ </span><span style="color:#d08770;">1</span><span>;
+</span><span>
+</span><span style="color:#bf616a;">printf</span><span>(&quot;</span><span style="color:#a3be8c;">m = </span><span style="color:#d08770;">%d</span><span style="color:#a3be8c;">, n = </span><span style="color:#d08770;">%d</span><span style="color:#96b5b4;">\n</span><span>&quot;, m, n);
+</span><span>
+</span><span style="color:#b48ead;">int</span><span> x[m][n];
+</span><span style="color:#bf616a;">int </span><span>(*y)[n] = </span><span style="color:#96b5b4;">malloc</span><span>(m * n * sizeof(y[</span><span style="color:#d08770;">0</span><span>][</span><span style="color:#d08770;">0</span><span>]));
+</span><span style="color:#bf616a;">int </span><span>(*z)[m][n] = </span><span style="color:#96b5b4;">malloc</span><span>(sizeof(*z));
+</span></code></pre>
+<p><code>x</code> is a dynamic (i.e. variable-length) array allocated on the stack. <code>y</code> and 
+<code>z</code> are both pointers to chunks of memory allocated in the heap (which are the 
+size of <code>x</code>) but the semantic slightly differs between the two: the type of the 
+data <code>y</code> points to is <em>an array of <code>n</code> integers</em>, while <code>z</code> points to <em>an array 
+of <code>m</code> arrays of <code>n</code> integers</em>.</p>
+<p>If you're not comfortable with pointer arithmetic, you may want to read <a href="http://www.cs.umd.edu/class/sum2003/cmsc311/Notes/BitOp/pointer.html">this 
+tutorial</a>.</p>
+<p>Cell accesses are written as such:</p>
+<pre data-lang="c" style="background-color:#2b303b;color:#c0c5ce;" class="language-c "><code class="language-c" data-lang="c"><span>x[i][j] = </span><span style="color:#d08770;">42</span><span>;
+</span><span>y[i][j] = </span><span style="color:#d08770;">42</span><span>;
+</span><span>(*z)[i][j] = </span><span style="color:#d08770;">42</span><span>; </span><span style="color:#65737e;">// same as z[0][i][j] ;)
+</span></code></pre>
+<p>Even though the semantic of <code>z</code> is, in some way, closer to what we're 
+expressing, its usage is less practical.</p>
+<p>How can we write functions taking dynamic arrays as arguments ? This is were the 
+real syntax tricks hide: we can put the lengths as arguments and use them in the 
+type of the array. For more details on it, read this <a href="https://gcc.gnu.org/onlinedocs/gcc/Variable-Length.html">GCC man 
+page</a>.</p>
+<p>In plain C99:</p>
+<pre data-lang="c" style="background-color:#2b303b;color:#c0c5ce;" class="language-c "><code class="language-c" data-lang="c"><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">foo</span><span>(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">m</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span>[m][n]) {
+</span><span>    </span><span style="color:#65737e;">// Do something with x.
+</span><span>}
+</span><span>
+</span><span style="color:#65737e;">// ...
+</span><span>
+</span><span style="color:#bf616a;">foo</span><span>(m, n, x);
+</span><span style="color:#bf616a;">foo</span><span>(m, n, y);
+</span><span style="color:#bf616a;">foo</span><span>(m, n, *z);
+</span></code></pre>
+<p>Again, the arrays are not copied.</p>
+<p>Finally, GCC provides an elegant extension to put the size arguments after the 
+array, which may lead to more readable code in some cases:</p>
+<pre data-lang="c" style="background-color:#2b303b;color:#c0c5ce;" class="language-c "><code class="language-c" data-lang="c"><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">bar</span><span>(</span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">m</span><span>, </span><span style="color:#b48ead;">int</span><span> n; </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">x</span><span>[m][n], </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">m</span><span>, </span><span style="color:#b48ead;">int </span><span style="color:#bf616a;">n</span><span>) {
+</span><span>    </span><span style="color:#65737e;">// Do something with x.
+</span><span>}
+</span><span>
+</span><span style="color:#65737e;">// ...
+</span><span>
+</span><span style="color:#bf616a;">bar</span><span>(x, m, n);
+</span></code></pre>
+<p>A full working example of this is available <a href="https://simonguillot.com/articles/c-ndarrays/arrays.c">here</a>.</p>
+
+    </div>
+  </div>
+</section>
+
+
+  
+  <footer class="footer">
+    
+  
+  <div class="container is-max-desktop content">
+    <div class="columns">
+      <div class="column">
+        <h4>Quick links</h4>
+        <p><a href="https:&#x2F;&#x2F;simonguillot.com&#x2F;">Home</a></p>
+
+        
+          <p><a href="https:&#x2F;&#x2F;simonguillot.com&#x2F;cv&#x2F;">CV</a></p>
+        
+          <p><a href="https:&#x2F;&#x2F;simonguillot.com&#x2F;contact&#x2F;">Contact</a></p>
+        
+
+        
+        
+          <p><a href="https:&#x2F;&#x2F;simonguillot.com&#x2F;articles&#x2F;">Articles</a></p>
+        
+      </div>
+
+      <div class="column">
+        <h4>Products</h4>
+        
+          <p><a href="https:&#x2F;&#x2F;simonguillot.com&#x2F;thoughtwriter">Thoughtwriter</a></p>
+        
+      </div>
+    </div>
+    <hr/>
+  </div>
+
+
+    <div class="container content has-text-centered">
+      <p class="copyright">
+        © 2021 Simon Guillot
+      </p>
+    </div>
+  </footer>
+  
+</body>
+</html>

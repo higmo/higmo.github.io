@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simon Guillot</title>
+  <link rel="stylesheet" href="https://simonguillot.com/style.css">
+  <style>
+      .copyright {
+          font-size: 0.8em
+      }
+  </style>
+  
+</head>
+
+<body>
+  
+  
+
+
+<script async type="text/javascript">
+    window.addEventListener("DOMContentLoaded", (event) => {
+        var burger = document.querySelector('.navbar-burger');
+        var menu = document.querySelector('#' + burger.dataset.target);
+        burger.addEventListener('click', function () {
+            burger.classList.toggle('is-active');
+            menu.classList.toggle('is-active');
+        });
+    })
+</script>
+
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-brand">
+        
+        <span class="navbar-burger" data-target="navbarMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+        </span>
+    </div>
+    <div class="navbar-menu" id="navbarMenu">
+        <div class="navbar-end">
+        <a class="navbar-item" href="https:&#x2F;&#x2F;simonguillot.com&#x2F;">Home</a>
+    
+        
+            <a class="navbar-item" href="https:&#x2F;&#x2F;simonguillot.com&#x2F;cv&#x2F;">CV</a>
+        
+            <a class="navbar-item" href="https:&#x2F;&#x2F;simonguillot.com&#x2F;contact&#x2F;">Contact</a>
+        
+
+        
+        
+        <a class="navbar-item" href="https:&#x2F;&#x2F;simonguillot.com&#x2F;articles&#x2F;">Articles</a>
+        
+    
+        
+        </div>
+    </div>
+  </div>
+</nav>
+
+  
+
+  
+  
+<section class="hero is-small">
+    <div class="hero-body">
+      
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    #profile {
+        font-family: "Raleway", sans-serif;
+        animation: fade-in-up .5s;
+        animation-delay: .2s;
+        animation-fill-mode: both;
+    }
+
+    #profile .title {
+        margin-top: 0.5rem;
+    }
+
+    #profile .subtitle {
+        font-weight: 100;
+        font-size: large;
+    }
+
+    #profile, #profile a {
+        color: #aaa;
+    }
+
+    #profile p.accounts {
+        font-size: 1.5em;
+    }
+
+    #profile p.accounts a {
+        margin: 0 0.3em;
+    }
+</style>
+
+<div class="has-text-centered content is-family-secondary" id="profile">
+    <a href="https:&#x2F;&#x2F;simonguillot.com">
+        <img src="https://simonguillot.com/avatar.png" width="128px">
+        <h1 class="title">Simon Guillot</h1>
+        <h2 class="subtitle">Freelance Software Engineer | Machine Learning &amp; iOS</h2>
+    </a>
+    <p class="accounts">
+        
+            <a href="https:&#x2F;&#x2F;github.com&#x2F;notsimon">
+            <svg class="icon"><use xlink:href="https://simonguillot.com/fa-brands.svg#github"/>Github</svg>
+            </a>
+        
+            <a href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;simon-guillot-302567184&#x2F;">
+            <svg class="icon"><use xlink:href="https://simonguillot.com/fa-brands.svg#linkedin"/>Linkedin</svg>
+            </a>
+        
+    </p>
+</div>
+
+    </div>
+</section>
+
+
+  <style>
+    ul#articles {
+      list-style: none;
+      margin-left: 0;
+    }
+    #articles li {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    @media (max-width: 768px) {
+      #articles li a {
+        width: 100%;
+      }
+
+      #articles li {
+        margin-bottom: 1em;
+      }
+    }
+  </style>
+
+  <section class="section">
+    <div class="container content is-max-desktop">
+      <h1 class="title">Articles</h1>
+
+      
+
+      <ul id="articles">
+        
+        <li>
+          <a href="https://simonguillot.com/articles/jetson-vagrant/">Setting up a Jetson TX2 with Vagrant</a>
+          <time datetime="2019-11-16T00:00:00+00:00">November 16, 2019</time>
+        </li>
+        
+        <li>
+          <a href="https://simonguillot.com/articles/magnetic-field-interpolation/">Real time interpolation of the magnetic field</a>
+          <time datetime="2017-05-10T00:00:00+00:00">May 10, 2017</time>
+        </li>
+        
+        <li>
+          <a href="https://simonguillot.com/articles/c-ndarrays/">N-dimensional arrays in C</a>
+          <time datetime="2012-04-09T00:00:00+00:00">April 09, 2012</time>
+        </li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+  
+  <footer class="footer">
+    
+
+
+    <div class="container content has-text-centered">
+      <p class="copyright">
+        © 2021 Simon Guillot
+      </p>
+    </div>
+  </footer>
+  
+</body>
+</html>
