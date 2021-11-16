@@ -38,9 +38,9 @@
         <h2 class="subtitle">Freelance Software Engineer | Machine Learning &amp; iOS</h2>
     </a>
     <p class="accounts">
-        {% for link in config.extra.links %}
+        {% for link in config.extra.social_links %}
             <a href="{{ link.url }}">
-            <svg class="icon"><use xlink:href="{{ get_url(path='fa-brands.svg') }}#{{ link.brand }}"/>{{ link.brand }}</svg>
+            <svg class="icon"><use xlink:href="{{ get_url(path='fa-brands.svg') }}#{{ link.name | lower }}"/>{{ link.name }}</svg>
             </a>
         {% endfor %}
     </p>

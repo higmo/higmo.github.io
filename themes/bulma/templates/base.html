@@ -28,7 +28,7 @@
   <footer class="footer">
     {% block sitemap %}
     {% set section = get_section(path="_index.md") %}
-    <div class="container is-max-desktop content has-text-centered">
+    <div class="container is-max-desktop content">
       <div class="columns">
         <div class="column">
           <h4>{{ config.title }}</h4>
@@ -36,6 +36,11 @@
 
           {% for page in section.pages %}
             <p><a href="{{ page.permalink }}">{{ page.title }}</a></p>
+          {% endfor %}
+
+          {% for path in section.subsections %}
+          {% set subsection = get_section(path=path) %}
+            <p><a href="{{ subsection.permalink }}">{{ subsection.title }}</a></p>
           {% endfor %}
         </div>
       </div>
