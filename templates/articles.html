@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {{ super() }}
+
+  <style>
+    ul#articles {
+      list-style: none;
+      margin-left: 0;
+    }
+    #articles li {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    @media (max-width: 768px) {
+      #articles li a {
+        width: 100%;
+      }
+
+      #articles li {
+        margin-bottom: 1em;
+      }
+    }
+  </style>
+
+  <section class="section">
+    <div class="container content is-max-desktop">
+      <h1 class="title">{{ section.title }}</h1>
+
+      {{ section.content | safe }}
+
+      <ul id="articles">
+        {% for article in section.pages %}
+        <li>
+          <a href="{{ article.permalink | safe }}">{{ article.title }}</a>
+          <time datetime="{{ article.date | date(format='%+') }}">{{ article.date | date(format="%B %d, %Y") }}</time>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+{% endblock content %}
+
+{% block sitemap %}
+{% endblock sitemap %}

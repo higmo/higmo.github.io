@@ -1,5 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-  {{ section.content | safe }}
+  <section class="hero is-medium">
+      <div class="hero-body">
+        {{ profile::render() }}
+      </div>
+  </section>
+
+  <section class="section">
+    <div class="container content is-max-desktop">
+      <div class="columns">
+        <div class="column is-three-fifths is-offset-one-fifth">
+          {{ section.content | safe }}
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock content %}
+
+{% block footer %}
+{% endblock footer %}

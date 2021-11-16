@@ -1,0 +1,18 @@
+digraph {
+    rankdir=TB
+    nodesep=0.6
+
+    input [label="Measurements"]
+
+    subgraph cluster_model {
+        style=dashed
+        model [shape=box, margin=0.3, style=filled,
+               label="Estimator"]
+    }
+
+    output [label="State"]
+
+    input -> model [constraint=false]
+    model -> output [constraint=false]
+    output:n -> model:n [constraint=false]
+}

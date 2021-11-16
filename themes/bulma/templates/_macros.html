@@ -12,12 +12,14 @@
     })
 </script>
 
-<nav class="navbar is-dark">
+<nav class="navbar">
   <div class="container">
     <div class="navbar-brand">
+        {% if config.extra.navbar_brand %}
         <a class="navbar-item" href="{{ section.permalink }}">
-        <img src="{{ get_url(path='navbar-brand.png') }}" height="50">
+            <img src="{{ get_url(path=config.extra.navbar_brand) }}" height="50">
         </a>
+        {% endif %}
         <span class="navbar-burger" data-target="navbarMenu">
         <span></span>
         <span></span>
@@ -31,6 +33,11 @@
         {% for page in section.pages %}
             <a class="navbar-item" href="{{ page.permalink }}">{{ page.title }}</a>
         {% endfor %}
+
+        {% for path in section.subsections %}
+        {% set subsection = get_section(path=path) %}
+        <a class="navbar-item" href="{{ subsection.permalink }}">{{ subsection.title }}</a>
+        {% endfor %}
     
         {% if config.extra.extra_menu %}
             {% for menu in config.extra.extra_menu %}
@@ -41,4 +48,4 @@
     </div>
   </div>
 </nav>
-{% endmacro render_header %}
+{% endmacro navbar %}

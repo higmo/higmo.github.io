@@ -1,55 +1,13 @@
-{% import "_macros.html" as macros %}
+{% extends "bulma/templates/base.html" %}
+{% import "macros/profile.html" as profile %}
 
-<!DOCTYPE html>
-<html>
-<head>
-  {% block head %}
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}{{ config.title }}{% endblock title %}</title>
-  <link rel="stylesheet" href="{{ get_url(path='style.css') }}">
-  <style>
-      .copyright {
-          font-size: 0.8em
-      }
-  </style>
-  {% endblock head %}
-</head>
-
-{% set section = get_section(path="_index.md") %}
-
-<body>
-  {% block navbar %}
-  {{ macros::navbar() }}
-  {% endblock navbar %}
-
-  {% block content %}
-  {% endblock content %}
-
-  <footer class="footer">
-    <div class="container is-max-desktop content">
-      <div class="columns">
-        <div class="column">
-          <h4>{{ config.title }}</h4>
-          <p><a href="{{ section.permalink }}">{{ section.title }}</a></p>
-
-          {% for page in section.pages %}
-            <p><a href="{{ page.permalink }}">{{ page.title }}</a></p>
-          {% endfor %}
-        </div>
-        <div class="column">
-          <h4>Worth seeing</h4>
-          <p><a href="https://simonguillot.com/thoughtwriter">Thoughtwriter</a></p>
-          <p><a href="#">HIIT Companion</a></p>
-        </div>
-      </div>
-      <hr/>
+{% block content %}
+<section class="hero is-small">
+    <div class="hero-body">
+      {{ profile::render() }}
     </div>
-    <div class="content has-text-centered">
-      <p class="copyright">
-        &copy; {{ config.extra.copyright }}
-      </p>
-    </div>
-  </footer>
-</body>
-</html>
+</section>
+{% endblock content %}
+
+{% block sitemap %}
+{% endblock sitemap %}

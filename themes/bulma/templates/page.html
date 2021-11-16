@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %} {{ super() }} | {{ page.title }} {% endblock title %}
+
+{% block head %}
+{{ super() }}
+{% if config.extra.katex_enable %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
+  {% if config.extra.katex_auto_render %}
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+    });
+</script>
+  {% endif %}
+{% endif %}
+{% endblock head %}
+
+{% block content %}
+{{ super() }}
+
+<style>
+  .page-content img {
+    margin: auto;
+    display: block;
+  }
+</style>
+
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h1 class="title is-2 has-text-centered">{{ page.description }}</h1>
+    <div class="page-content">
+      {{ page.content | safe }}
+    </div>
+  </div>
+</section>
+{% endblock content %}

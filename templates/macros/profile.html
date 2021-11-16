@@ -1,0 +1,48 @@
+{% macro render() %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    #profile {
+        font-family: "Raleway", sans-serif;
+        animation: fade-in-up .5s;
+        animation-delay: .2s;
+        animation-fill-mode: both;
+    }
+
+    #profile .title {
+        margin-top: 0.5rem;
+    }
+
+    #profile .subtitle {
+        font-weight: 100;
+        font-size: large;
+    }
+
+    #profile, #profile a {
+        color: #aaa;
+    }
+
+    #profile p.accounts {
+        font-size: 1.5em;
+    }
+
+    #profile p.accounts a {
+        margin: 0 0.3em;
+    }
+</style>
+
+<div class="has-text-centered content is-family-secondary" id="profile">
+    <a href="{{ config.base_url }}">
+        <img src="{{ get_url(path='avatar.png') }}" width="128px">
+        <h1 class="title">Simon Guillot</h1>
+        <h2 class="subtitle">Freelance Software Engineer | Machine Learning &amp; iOS</h2>
+    </a>
+    <p class="accounts">
+        {% for link in config.extra.links %}
+            <a href="{{ link.url }}">
+            <svg class="icon"><use xlink:href="{{ get_url(path='fa-brands.svg') }}#{{ link.brand }}"/>{{ link.brand }}</svg>
+            </a>
+        {% endfor %}
+    </p>
+</div>
+{% endmacro render %}

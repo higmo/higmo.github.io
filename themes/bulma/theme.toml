@@ -1,0 +1,21 @@
+name = "bulma"
+description = "A basic theme based on Bulma"
+license = "MIT"
+homepage = "https://github.com/notsimon/zola-bulma"
+# The minimum version of Zola required
+min_version = "0.14.1"
+
+# Any variable there can be overridden in the end user `config.toml`
+# You don't need to prefix variables by the theme name but as this will
+# be merged with user data, some kind of prefix or nesting is preferable
+# Use snake_casing to be consistent with the rest of Zola
+[extra]
+navbar_brand = ""
+copyright = ""
+katex_enable = false
+katex_auto_render = false
+
+# The theme author info: you!
+[author]
+name = "Simon Guillot"
+homepage = "https://simonguillot.com"

@@ -2,23 +2,6 @@
 title = "Home"
 +++
 
-<section class="section hero is-dark is-fullheight">
-    <div class="container has-text-centered ">
-      <div class="columns is-desktop is-vcentered">
-        <div class="column">
-          <p class="title">
-            Save memories, track your mood
-          </p>
-          <p class="subtitle">
-              A simple, elegant journaling app that helps you track your mood. Its AI lives on your device so there's no need to steal your data.
-          </p>
-          <p>
-            <a href="#"><img src="app-store-badge-black.svg" /></a>
-          </p>
-        </div>
-        <div class="column is-vcentered">
-          <img src="screenshot-1.png" style="min-height: 500px; max-height: 70vh">
-        </div>
-      </div>
-    </div>
-</section>
+Hi, I'm Simon. I live in Nantes, France where I work remotely as a freelance Software Engineer. I have a strong background in Machine Learning and software development, these days I'm mostly interested in building iOS apps with SwiftUI and CoreML.
+
+On my spare time I workout a lot, hike and cycle, teach STEM to school children, try to grow veggies and I love to travel with a tiny backpack.

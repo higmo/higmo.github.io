@@ -1,0 +1,54 @@
+{% import "_macros.html" as macros %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  {% block head %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+  <link rel="stylesheet" href="{{ get_url(path='style.css') }}">
+  <style>
+      .copyright {
+          font-size: 0.8em
+      }
+  </style>
+  {% endblock head %}
+</head>
+
+<body>
+  {% block navbar %}
+  {{ macros::navbar() }}
+  {% endblock navbar %}
+
+  {% block content %}
+  {% endblock content %}
+
+  {% block footer %}
+  <footer class="footer">
+    {% block sitemap %}
+    {% set section = get_section(path="_index.md") %}
+    <div class="container is-max-desktop content has-text-centered">
+      <div class="columns">
+        <div class="column">
+          <h4>{{ config.title }}</h4>
+          <p><a href="{{ section.permalink }}">{{ section.title }}</a></p>
+
+          {% for page in section.pages %}
+            <p><a href="{{ page.permalink }}">{{ page.title }}</a></p>
+          {% endfor %}
+        </div>
+      </div>
+      <hr/>
+    </div>
+    {% endblock sitemap %}
+
+    <div class="container content has-text-centered">
+      <p class="copyright">
+        {{ config.extra.copyright }}
+      </p>
+    </div>
+  </footer>
+  {% endblock footer %}
+</body>
+</html>
