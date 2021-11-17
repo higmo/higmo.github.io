@@ -39,9 +39,16 @@
         <a class="navbar-item" href="{{ subsection.permalink }}">{{ subsection.title }}</a>
         {% endfor %}
     
-        {% if config.extra.extra_menu %}
-            {% for menu in config.extra.extra_menu %}
-            <a class="navbar-item" href="{{ menu.link }}">{{ menu.title }}</a>
+        {% if config.extra.extra_links %}
+            {% for section in config.extra.extra_links %}
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">{{ section.title }}</a>
+                <div class="navbar-dropdown">
+                    {% for link in section.links %}
+                    <a class="navbar-item" href="{{ link.url }}">{{ link.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
             {% endfor %}
         {% endif %}
         </div>

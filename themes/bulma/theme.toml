@@ -14,6 +14,7 @@ navbar_brand = ""
 copyright = ""
 katex_enable = false
 katex_auto_render = false
+extra_links = []
 
 # The theme author info: you!
 [author]

@@ -31,7 +31,7 @@
     <div class="container is-max-desktop content">
       <div class="columns">
         <div class="column">
-          <h4>{{ config.title }}</h4>
+          <h4>Shortcuts</h4>
           <p><a href="{{ section.permalink }}">{{ section.title }}</a></p>
 
           {% for page in section.pages %}
@@ -43,6 +43,17 @@
             <p><a href="{{ subsection.permalink }}">{{ subsection.title }}</a></p>
           {% endfor %}
         </div>
+
+        {% if config.extra.extra_links %}
+        {% for section in config.extra.extra_links %}
+        <div class="column">
+          <h4>{{ section.title }}</h4>
+          {% for link in section.links %}
+            <p><a href="{{ link.url }}">{{ link.name }}</a></p>
+          {% endfor %}
+        </div>
+        {% endfor %}
+        {% endif %}
       </div>
       <hr/>
     </div>

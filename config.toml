@@ -25,5 +25,7 @@ social_links = [
 ]
 
 extra_links = [
-    { name = "Thoughtwriter", url = "https://simonguillot.com/thoughtwriter" },
+    { title = "Products", links = [
+        { name = "Thoughtwriter", url = "https://simonguillot.com/thoughtwriter" },
+    ]}
 ]

@@ -8,32 +8,3 @@
     </div>
 </section>
 {% endblock content %}
-
-{% block sitemap %}
-  {% set section = get_section(path="_index.md") %}
-  <div class="container is-max-desktop content">
-    <div class="columns">
-      <div class="column">
-        <h4>Quick links</h4>
-        <p><a href="{{ section.permalink }}">{{ section.title }}</a></p>
-
-        {% for page in section.pages %}
-          <p><a href="{{ page.permalink }}">{{ page.title }}</a></p>
-        {% endfor %}
-
-        {% for path in section.subsections %}
-        {% set subsection = get_section(path=path) %}
-          <p><a href="{{ subsection.permalink }}">{{ subsection.title }}</a></p>
-        {% endfor %}
-      </div>
-
-      <div class="column">
-        <h4>Products</h4>
-        {% for link in config.extra.extra_links %}
-          <p><a href="{{ link.url }}">{{ link.name }}</a></p>
-        {% endfor %}
-      </div>
-    </div>
-    <hr/>
-  </div>
-{% endblock sitemap %}
