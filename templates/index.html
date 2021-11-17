@@ -1,13 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <section class="hero is-large">
+  <section class="hero is-fullheight-with-navbar">
       <div class="hero-body">
+        <div class="container has-text-centered">
         {{ profile::render() }}
+        </div>
+      </div>
+
+      <div class="hero-foot">
+        <div class="container has-text-centered has-text-weight-light has-text-grey-light">
+          ⇩
+        </div>
       </div>
   </section>
 
-  <section class="section">
+  <section class="section" id="content">
     <div class="container content is-max-desktop">
       <div class="columns">
         <div class="column is-three-fifths is-offset-one-fifth">
