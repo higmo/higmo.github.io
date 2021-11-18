@@ -1,11 +1,15 @@
 +++
-title = "A pouch of tricks to deploy neural nets on mobile devices"
+title = "A few tips to deploy neural nets on mobile devices"
 date = "2021-11-02"
 +++
 
 Deep Neural Networks are by nature not the most computationally efficient type of models. While their performance remains mostly unchallenged for applications that involve a high-dimensional input, deploying them in environments with limited computing power requires additional work. The first job is to reduce the algorithmic complexity of the model, that'll more likely be the job of a Data Scientist as it usually comes at a cost in accuracy that must be evaluated. In a second part a well-rounded Developer or Machine Learning Engineer must take that model and convert it to a format compatible with the inference platform of their choosing. Bellow are a few tricks I learned from experience.
 
 _Deploying a PyTorch model to iOS with CoreML will be the topic of a tutorial I'll publish soon, stay tuned! 😉_
+
+### TLDR;
+
+Being too creative with the architecture of your models will lead to higher friction and a higher cost of deployment. Overall, deploying a model offline while using all of a device's capabilities is full of pitfalls, don't neglect the time it'll take you.
 
 # Compressing the model
 
@@ -64,7 +68,7 @@ In a broader sense, the less original your model is, the easier it will be to de
 
 Take the LSTM as an example: it has been around for decades now thus it is very well supported in many environment. If implemented without modification in PyTorch or Tensorflow, it will end up being a single computation node in the exported graph. However, a fair amount of publications are slightly modifying its activation function for a gain that is, once again, marginal. If that isn't supported by the targeted engine, a single node now became a dozen of potentially problematic primitive operations.
 
-# TLDR;
+# Conclusion
 
 It is mandatory to take into account the target environment when building a model:
 
