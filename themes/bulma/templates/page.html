@@ -41,7 +41,13 @@
 
 <section class="section">
   <div class="container is-max-desktop content">
-    <h1 class="title is-2 has-text-centered has-text-weight-light">{{ page.description }}</h1>
+    <h1 class="title is-2 has-text-centered has-text-weight-light">
+      {% if page.description %}
+      {{ page.description }}
+      {% else %}
+      {{ page.title }}
+      {% endif %}
+    </h1>
     <div class="page-content">
       {{ page.content | safe }}
     </div>

@@ -1,6 +1,5 @@
 +++
 title = "Real time interpolation of the magnetic field"
-description = "Real time interpolation of the magnetic field"
 date = "2017-05-10"
 +++
 
