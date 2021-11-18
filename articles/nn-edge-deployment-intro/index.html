@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Simon Guillot | A pouch of tricks to deploy neural nets on mobile devices </title>
+  <link rel="stylesheet" href="https://simonguillot.com/style.css">
+  <style>
+      .copyright {
+          font-size: 0.8em
+      }
+  </style>
+  
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+    });
+</script>
+  
+
+
+</head>
+
+<body>
+  
+  
+
+
+<script async type="text/javascript">
+    window.addEventListener("DOMContentLoaded", (event) => {
+        var burger = document.querySelector('.navbar-burger');
+        var menu = document.querySelector('#' + burger.dataset.target);
+        burger.addEventListener('click', function () {
+            burger.classList.toggle('is-active');
+            menu.classList.toggle('is-active');
+        });
+    })
+</script>
+
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-brand">
+        
+        <span class="navbar-burger" data-target="navbarMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+        </span>
+    </div>
+    <div class="navbar-menu" id="navbarMenu">
+        <div class="navbar-end">
+        <a class="navbar-item" href="https:&#x2F;&#x2F;simonguillot.com&#x2F;">Home</a>
+    
+        
+            <a class="navbar-item" href="https:&#x2F;&#x2F;simonguillot.com&#x2F;cv&#x2F;">CV</a>
+        
+            <a class="navbar-item" href="https:&#x2F;&#x2F;simonguillot.com&#x2F;contact&#x2F;">Contact</a>
+        
+
+        
+        
+        <a class="navbar-item" href="https:&#x2F;&#x2F;simonguillot.com&#x2F;articles&#x2F;">Articles</a>
+        
+    
+        
+            
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">Products</a>
+                <div class="navbar-dropdown">
+                    
+                    <a class="navbar-item" href="https:&#x2F;&#x2F;simonguillot.com&#x2F;thoughtwriter">Thoughtwriter</a>
+                    
+                </div>
+            </div>
+            
+        
+        </div>
+    </div>
+  </div>
+</nav>
+
+  
+
+  
+
+<section class="hero is-small">
+    <div class="hero-body">
+      
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    #profile {
+        font-family: "Raleway", sans-serif;
+        animation: fade-in-up .5s;
+        animation-delay: .2s;
+        animation-fill-mode: both;
+    }
+
+    #profile .title {
+        margin-top: 0.5rem;
+    }
+
+    #profile .subtitle {
+        font-weight: 100;
+        font-size: large;
+    }
+
+    #profile, #profile a {
+        color: #aaa;
+    }
+
+    #profile p.accounts {
+        font-size: 1.5em;
+    }
+
+    #profile p.accounts a {
+        margin: 0 0.3em;
+    }
+</style>
+
+<div class="has-text-centered content is-family-secondary" id="profile">
+    <a href="https:&#x2F;&#x2F;simonguillot.com">
+        <img src="https://simonguillot.com/avatar.png" width="128px">
+        <h1 class="title">Simon Guillot</h1>
+        <h2 class="subtitle">Freelance Software Engineer | Machine Learning &amp; iOS</h2>
+    </a>
+    <p class="accounts">
+        
+            <a href="https:&#x2F;&#x2F;github.com&#x2F;notsimon">
+            <svg class="icon"><use xlink:href="https://simonguillot.com/fa-brands.svg#github"/>Github</svg>
+            </a>
+        
+            <a href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;simon-guillot-302567184&#x2F;">
+            <svg class="icon"><use xlink:href="https://simonguillot.com/fa-brands.svg#linkedin"/>Linkedin</svg>
+            </a>
+        
+    </p>
+</div>
+
+    </div>
+</section>
+
+
+<style>
+  .page-content img {
+    margin: auto;
+    display: block;
+  }
+</style>
+
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h1 class="title is-2 has-text-centered has-text-weight-light">
+      
+      A pouch of tricks to deploy neural nets on mobile devices
+      
+    </h1>
+    <div class="page-content">
+      <p>Deep Neural Networks are by nature not the most computationally efficient type of models. While their performance remains mostly unchallenged for applications that involve a high-dimensional input, deploying them in environments with limited computing power requires additional work. The first job is to reduce the algorithmic complexity of the model, that'll more likely be the job of a Data Scientist as it usually comes at a cost in accuracy that must be evaluated. In a second part a well-rounded Developer or Machine Learning Engineer must take that model and convert it to a format compatible with the inference platform of their choosing. Bellow are a few tricks I learned from experience.</p>
+<p><em>Deploying a PyTorch model to iOS with CoreML will be the topic of a tutorial I'll publish soon, stay tuned! 😉</em></p>
+<h1 id="compressing-the-model">Compressing the model</h1>
+<p>Three main techniques are used to reduce the overall computing power required by a neural networks: quantisation, weights pruning and knowledge distillation (see <a href="https://blog.rasa.com/compressing-bert-for-faster-prediction-2/">Compressing BERT for faster prediction </a> and <a href="https://medium.com/huggingface/distilbert-8cf3380435b5">Introducing DistilBERT, a distilled version of BERT</a> for an in-depth introduction).</p>
+<p>Quantisation is the process of reducing the precision of a model's parameters and operations to save memory and take advantage of wider parallelisation of arithmetic operations. It can be done through the usage of smaller floating-point types (typically half-precision, ie. 2 bytes instead of 4) or fixed-point operations: the former only increases rounding errors, whereas the latter requires choosing the range in which the computations are going to happen. To avoid hurting the model's performance too much, quantisation should be accounted for during training. When doing <a href="https://arxiv.org/abs/1712.05877">Quantisation Aware Training</a>, the training process is roughly the following:</p>
+<ol>
+<li>Quantise the model's weights</li>
+<li>Compute the loss with the quantised version of the network</li>
+<li>Compute the gradient w.r.t the unquantised weights</li>
+<li>Update the unquantised weights</li>
+<li>Repeat</li>
+</ol>
+<p>In PyTorch, quantisation can be done statically (converting a model beforehand) or dynamically (converting an intermediate output to a quantised version then back during inference) and is described in <a href="https://pytorch.org/blog/introduction-to-quantization-on-pytorch/">this tutorial</a> of the framework's blog.</p>
+<p><a href="https://arxiv.org/abs/1611.06440">Weights pruning</a> removes part of the model that have little contribution to the end result. Removing individual weights has no interest in the absence of an efficient implementation of sparse matrices operations, whereas pruning neurons entirely amounts to removing entire rows or columns of a weight matrix. In some cases, pruning entire weight matrices seems to be doable <a href="https://arxiv.org/abs/1905.10650">without much loss in accuracy</a>. The decision can be taken by measuring both the neurons activations and error gradients during inference on a representative dataset. Alternating between pruning and training steps allows for the remaining neurons to compensate. PyTorch's documentation again has <a href="https://pytorch.org/tutorials/intermediate/pruning_tutorial.html">a good tutorial</a> on the topic.</p>
+<p>Finally, knowledge distillation is the process of learning a smaller model from the output of a bigger one. While being introduced six years ago <a href="https://arxiv.org/abs/1503.02531">by Geoffrey Hinton</a>, this methods seems to still be heavily used: it works well in practice to have a thiner and <a href="https://arxiv.org/abs/1412.6550">deeper distilled model</a> (see also <a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI16/paper/download/11977/12130">here</a> and <a href="https://arxiv.org/abs/1902.03393">there</a> for a lot of advice on the topic). The key insight to take away from these techniques is that they work well because of the added informations that can be used during training: for instance a classifier is trained as a regression task over the whole probability distribution over all classes of the output of original model, we can also use unlabelled examples on top of the usual training data set.</p>
+<h1 id="runtimes-and-conversions">Runtimes and conversions</h1>
+<p>In this article I'm only considering models designed with PyTorch and Tensorflow. These two frameworks have dedicated libraries to run the inference on devices: Tensorflow-Lite and PyTorch-Mobile. The upside of choosing these engines to run your models is that the compatibility with the possible model architectures is excellent. The downside is that they are much less portable and most of the time don't take advantage of the dedicated hardware of your devices.</p>
+<p>Depending on the device, a few more platforms are available to choose from: MLKit on Android, Tract that is cross-platform, OpenVINO on Intel products, TensorRT on NVidia's hardware, CoreML on Apple devices, etc.
+The main problem with all these target-specific platforms is their usability: they support only a (not so large) subset of operations available of PyTorch and Tensorflow, and the quality of the toolchain is usually substandard. However, the huge upside of these is, I reiterate, the ability to take full advantage of your hardware and other capabilities of the device: as of now CoreML is for instance the only way to use the Neural Engine of Apple products. So in most cases, converting a model from the Data Scientist' environment to the appropriate format should not be considered to be a straightforward and easy task.</p>
+<p>There are a many paths to end-up with a model that runs &quot;natively&quot; on the environment of your choosing, a few are given bellow (the easy paths are shown in green, the harder ones in red):</p>
+<p><img src="conversion-paths.png" style="width: 700px; max-width: 90%" alt="Conversion paths from deep learning frameworks to inference engines"></img></p>
+<h2 id="exporting-the-model">Exporting the model</h2>
+<p>With PyTorch, exporting a model usually goes through TorchScript. The official documentation has a very good <a href="https://pytorch.org/docs/stable/jit.html">quick introduction</a> but here are a few tips that should make the process easier:</p>
+<ul>
+<li>It is possible to either &quot;script&quot; or &quot;trace&quot; a model. Tracing gives more constrains on the flow of data through the model and how tensors can be dealt, that avoids quite a few operations that may be problematic further down the line when converting the model to the final format of the inference engine.</li>
+<li>Avoid as much as possible operations that are depending on the nature of the tensors: their shape, type of data, etc. For instance don't use the size property of the tensor to compute an average but choose the adaptative operations that already exist in the framework.</li>
+<li>When converting a model that works on sequences, the padding and packing operations (necessary only to train on batches of samples) should not appear on the graph to export: keep a specific path for inference that avoids all these problematic tinkering with the input.</li>
+</ul>
+<p>The following advice are also relevant if you are dealing with Tensorflow:</p>
+<ul>
+<li>Some operations are more exotic that others, replacing them by a similar but more common one can help. For instance, a hard sigmoid isn't as common as a regular sigmoid. If the gain in accuracy is marginal, it may not be relevant to keep it. If it does help during training, changing it only at the time of inference is a good idea. Obviously, this kind of changes won't give you results identical to the original model so their impact need to be measured!</li>
+<li>To avoid many easy mistakes developers may do (and use your hardware as much as you can!), it is a rather good idea to include all preprocessing operations in the computation graph. Typically, normalising the input should be included in your exported model.</li>
+</ul>
+<p>In a broader sense, the less original your model is, the easier it will be to deploy it: all the operations and architectures that are common in the most popular image and natural language processing models have good chances of being easy to convert without much difficulty.</p>
+<p>Take the LSTM as an example: it has been around for decades now thus it is very well supported in many environment. If implemented without modification in PyTorch or Tensorflow, it will end up being a single computation node in the exported graph. However, a fair amount of publications are slightly modifying its activation function for a gain that is, once again, marginal. If that isn't supported by the targeted engine, a single node now became a dozen of potentially problematic primitive operations.</p>
+<h1 id="tldr">TLDR;</h1>
+<p>It is mandatory to take into account the target environment when building a model:</p>
+<ul>
+<li>Some architectures should be ruled out straight away as they may not be realistic to run on your platform</li>
+<li>Reducing the computational cost needs to be done during training</li>
+<li>In almost every case your model's computation graph will need to be modified</li>
+</ul>
+<p>Integrating the whole deployment process in the model development cycle is thus by far one of the best decision you can make: whomever is designing the models will be able to make the necessary compromises early on and the uncertainty on the time required to put the model in production will be greatly reduced.</p>
+
+    </div>
+  </div>
+</section>
+
+
+  
+  <footer class="footer">
+    
+    
+    <div class="container is-max-desktop content">
+      <div class="columns">
+        <div class="column">
+          <h4>Shortcuts</h4>
+          <p><a href="https:&#x2F;&#x2F;simonguillot.com&#x2F;">Home</a></p>
+
+          
+            <p><a href="https:&#x2F;&#x2F;simonguillot.com&#x2F;cv&#x2F;">CV</a></p>
+          
+            <p><a href="https:&#x2F;&#x2F;simonguillot.com&#x2F;contact&#x2F;">Contact</a></p>
+          
+
+          
+          
+            <p><a href="https:&#x2F;&#x2F;simonguillot.com&#x2F;articles&#x2F;">Articles</a></p>
+          
+        </div>
+
+        
+        
+        <div class="column">
+          <h4>Products</h4>
+          
+            <p><a href="https:&#x2F;&#x2F;simonguillot.com&#x2F;thoughtwriter">Thoughtwriter</a></p>
+          
+        </div>
+        
+        
+      </div>
+      <hr/>
+    </div>
+    
+
+    <div class="container content has-text-centered">
+      <p class="copyright">
+        © 2021 Simon Guillot
+      </p>
+    </div>
+  </footer>
+  
+</body>
+</html>
