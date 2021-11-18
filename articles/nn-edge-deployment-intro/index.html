@@ -5,7 +5,7 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Simon Guillot | A pouch of tricks to deploy neural nets on mobile devices </title>
+  <title> Simon Guillot | A few tips to deploy neural nets on mobile devices </title>
   <link rel="stylesheet" href="https://simonguillot.com/style.css">
   <style>
       .copyright {
@@ -170,12 +170,14 @@
   <div class="container is-max-desktop content">
     <h1 class="title is-2 has-text-centered has-text-weight-light">
       
-      A pouch of tricks to deploy neural nets on mobile devices
+      A few tips to deploy neural nets on mobile devices
       
     </h1>
     <div class="page-content">
       <p>Deep Neural Networks are by nature not the most computationally efficient type of models. While their performance remains mostly unchallenged for applications that involve a high-dimensional input, deploying them in environments with limited computing power requires additional work. The first job is to reduce the algorithmic complexity of the model, that'll more likely be the job of a Data Scientist as it usually comes at a cost in accuracy that must be evaluated. In a second part a well-rounded Developer or Machine Learning Engineer must take that model and convert it to a format compatible with the inference platform of their choosing. Bellow are a few tricks I learned from experience.</p>
 <p><em>Deploying a PyTorch model to iOS with CoreML will be the topic of a tutorial I'll publish soon, stay tuned! 😉</em></p>
+<h3 id="tldr">TLDR;</h3>
+<p>Being too creative with the architecture of your models will lead to higher friction and a higher cost of deployment. Overall, deploying a model offline while using all of a device's capabilities is full of pitfalls, don't neglect the time it'll take you.</p>
 <h1 id="compressing-the-model">Compressing the model</h1>
 <p>Three main techniques are used to reduce the overall computing power required by a neural networks: quantisation, weights pruning and knowledge distillation (see <a href="https://blog.rasa.com/compressing-bert-for-faster-prediction-2/">Compressing BERT for faster prediction </a> and <a href="https://medium.com/huggingface/distilbert-8cf3380435b5">Introducing DistilBERT, a distilled version of BERT</a> for an in-depth introduction).</p>
 <p>Quantisation is the process of reducing the precision of a model's parameters and operations to save memory and take advantage of wider parallelisation of arithmetic operations. It can be done through the usage of smaller floating-point types (typically half-precision, ie. 2 bytes instead of 4) or fixed-point operations: the former only increases rounding errors, whereas the latter requires choosing the range in which the computations are going to happen. To avoid hurting the model's performance too much, quantisation should be accounted for during training. When doing <a href="https://arxiv.org/abs/1712.05877">Quantisation Aware Training</a>, the training process is roughly the following:</p>
@@ -209,7 +211,7 @@ The main problem with all these target-specific platforms is their usability: th
 </ul>
 <p>In a broader sense, the less original your model is, the easier it will be to deploy it: all the operations and architectures that are common in the most popular image and natural language processing models have good chances of being easy to convert without much difficulty.</p>
 <p>Take the LSTM as an example: it has been around for decades now thus it is very well supported in many environment. If implemented without modification in PyTorch or Tensorflow, it will end up being a single computation node in the exported graph. However, a fair amount of publications are slightly modifying its activation function for a gain that is, once again, marginal. If that isn't supported by the targeted engine, a single node now became a dozen of potentially problematic primitive operations.</p>
-<h1 id="tldr">TLDR;</h1>
+<h1 id="conclusion">Conclusion</h1>
 <p>It is mandatory to take into account the target environment when building a model:</p>
 <ul>
 <li>Some architectures should be ruled out straight away as they may not be realistic to run on your platform</li>
