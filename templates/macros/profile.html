@@ -34,8 +34,8 @@
 <div class="has-text-centered content is-family-secondary" id="profile">
     <a href="{{ config.base_url }}">
         <img src="{{ get_url(path='avatar.png') }}" width="128px">
-        <h1 class="title">Simon Guillot</h1>
-        <h2 class="subtitle">Freelance Software Engineer | Machine Learning &amp; iOS</h2>
+        <h1 class="title">{{ config.title }}</h1>
+        <h2 class="subtitle">{{ config.description }}</h2>
     </a>
     <p class="accounts">
         {% for link in config.extra.social_links %}

@@ -7,6 +7,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+  <meta property="og:title" content="{{ config.title }}" />
+  <meta property="og:description" content="{{ config.description }}" />
+  <meta property="og:image" itemprop="image" content="{{ get_url(path=config.extra.og_image) }}">
   <link rel="stylesheet" href="{{ get_url(path='style.css') }}">
   <style>
       .copyright {
