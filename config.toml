@@ -1,7 +1,7 @@
 # The URL the site will be built for
 base_url = "https://simonguillot.com"
 title = "Simon Guillot"
-description = "Freelance Software Engineer | Machine Learning & iOS"
+description = "Freelance Software Engineer | Machine Learning & Edge Computing"
 theme = "bulma"
 
 # Whether to automatically compile all Sass files in the sass directory
@@ -26,8 +26,8 @@ social_links = [
     { name = "Linkedin", url = "https://www.linkedin.com/in/simon-guillot-302567184/" }
 ]
 
-extra_links = [
-    { title = "Products", links = [
-        { name = "Thoughtwriter", url = "https://simonguillot.com/thoughtwriter" },
-    ]}
-]
+# extra_links = [
+#     { title = "Products", links = [
+#         { name = "Thoughtwriter", url = "https://simonguillot.com/thoughtwriter" },
+#     ]}
+# ]
