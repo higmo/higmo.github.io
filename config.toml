@@ -18,12 +18,12 @@ highlight_code = true
 [extra]
 # Put all your custom variables here
 og_image = "avatar.png"
-copyright = "© 2021 Simon Guillot"
+copyright = "© Simon Guillot"
 katex_enable = true
 katex_auto_render = true
 social_links = [
-    { name = "Github", url = "https://github.com/higmo" },
-    { name = "Linkedin", url = "https://www.linkedin.com/in/simon-guillot-302567184/" }
+  { name = "Github", url = "https://github.com/simgt" },
+  { name = "Linkedin", url = "https://www.linkedin.com/in/simon-guillot-302567184/" },
 ]
 
 # extra_links = [
